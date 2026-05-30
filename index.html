@@ -143,6 +143,29 @@ body.hov #cring{width:50px;height:50px;border-color:rgba(255,107,138,.9)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.12)}70%{transform:scale(1)}}
 
+/* ── START OVERLAY ── */
+#startOvr{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0d0020 0%,#03000e 70%);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity 1.5s ease,visibility 1.5s ease}
+#startOvr.hide{opacity:0;visibility:hidden;pointer-events:none}
+.sov-inner{text-align:center;padding:2rem;max-width:600px}
+.sov-ring{width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,107,138,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;position:relative;animation:ringPulse 3s ease infinite}
+.sov-ring::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(255,107,138,.08);animation:ringPulse 3s ease infinite .5s}
+.sov-ring::after{content:'';position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(255,107,138,.04);animation:ringPulse 3s ease infinite 1s}
+@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.06);opacity:1}}
+.sov-heart{font-size:4.5rem;animation:heartbeat 1.4s ease infinite;filter:drop-shadow(0 0 20px rgba(255,107,138,.6))}
+.sov-pre{font-size:.78rem;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;opacity:.8}
+.sov-name{font-family:'Great Vibes',cursive;font-size:clamp(4.5rem,13vw,7.5rem);line-height:1;background:linear-gradient(135deg,var(--rose-lt),var(--rose),var(--lav));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,107,138,.3));margin-bottom:.3rem}
+.sov-date{font-size:.8rem;letter-spacing:6px;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+.sov-btn{padding:1.2rem 4.5rem;background:transparent;border:1px solid rgba(255,107,138,.55);color:var(--rose-lt);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:7px;text-transform:uppercase;cursor:pointer;transition:all .4s ease;position:relative;overflow:hidden}
+.sov-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--rose-dp),var(--rose));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:-1}
+.sov-btn:hover,.sov-btn:focus{color:#fff;outline:none;box-shadow:0 0 50px rgba(255,107,138,.3)}
+.sov-btn:hover::before,.sov-btn:focus::before{transform:scaleX(1)}
+.sov-note{font-size:.66rem;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-top:1.8rem;opacity:.7}
+/* auto-scroll progress indicator */
+#autoBar{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);display:none;gap:.5rem;align-items:center;z-index:50}
+#autoBar.show{display:flex}
+.ab-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,107,138,.3);transition:all .4s ease}
+.ab-dot.act{background:var(--rose);box-shadow:0 0 8px var(--rose);transform:scale(1.4)}
+
 @media(max-width:700px){
   .mem-grid{grid-template-columns:repeat(2,1fr)}
   .mc:nth-child(n){margin-top:0}
@@ -157,6 +180,18 @@ body.hov #cring{width:50px;height:50px;border-color:rgba(255,107,138,.9)}
 </style>
 </head>
 <body>
+
+<!-- START OVERLAY -->
+<div id="startOvr">
+  <div class="sov-inner">
+    <div class="sov-ring"><span class="sov-heart">♥</span></div>
+    <p class="sov-pre">A birthday surprise for</p>
+    <div class="sov-name">Tharsa</div>
+    <p class="sov-date">May 31 &nbsp;✦&nbsp; Your Special Day</p>
+    <button class="sov-btn" onclick="startExperience()">Begin the Magic ✦</button>
+    <p class="sov-note">🔊 Turn up your volume</p>
+  </div>
+</div>
 
 <!-- LOADER -->
 <div id="loader">
@@ -185,6 +220,16 @@ body.hov #cring{width:50px;height:50px;border-color:rgba(255,107,138,.9)}
 
 <!-- BACKGROUND THREE.JS -->
 <canvas id="bgc"></canvas>
+
+<!-- AUTO-SCROLL DOTS -->
+<div id="autoBar">
+  <div class="ab-dot" data-i="0"></div>
+  <div class="ab-dot" data-i="1"></div>
+  <div class="ab-dot" data-i="2"></div>
+  <div class="ab-dot" data-i="3"></div>
+  <div class="ab-dot" data-i="4"></div>
+  <div class="ab-dot" data-i="5"></div>
+</div>
 
 <!-- HEARTS -->
 <div id="hbox"></div>
@@ -706,6 +751,64 @@ function blowCandles(){
 
 // Init cake when fonts are loaded
 document.fonts.load('80px "Great Vibes"').then(initCake).catch(initCake);
+
+// ═══════════════════════════════════════════════════════════
+//  AUTO-PLAY CINEMATIC EXPERIENCE
+// ═══════════════════════════════════════════════════════════
+function startExperience() {
+  // Hide start overlay
+  document.getElementById("startOvr").classList.add("hide");
+
+  // Show section dots
+  const bar = document.getElementById("autoBar");
+  bar.classList.add("show");
+
+  // Auto-play song (user gesture already satisfied by button click)
+  setTimeout(() => playSong(document.getElementById("songBtn")), 800);
+
+  // Section scroll timings (ms to spend on each section before moving on)
+  const sections = [...document.querySelectorAll(".sec")];
+  const timings  = [5000, 5000, 7000, 4500, 5000, 6000];
+  const dots     = [...document.querySelectorAll(".ab-dot")];
+
+  let idx = 0;
+  function goNext() {
+    if (idx >= sections.length) {
+      launchFW();
+      setTimeout(launchFW, 3500);
+      return;
+    }
+
+    // Highlight dot
+    dots.forEach((d, i) => d.classList.toggle("act", i === idx));
+
+    // Smooth scroll
+    sections[idx].scrollIntoView({ behavior: "smooth", block: "center" });
+
+    // Auto-blow candles when cake section is reached
+    const isCake = sections[idx].contains(document.getElementById("cakeCanvas"));
+    if (isCake) setTimeout(blowCandles, 2800);
+
+    // Fireworks at final section
+    const isFinal = idx === sections.length - 1;
+    if (isFinal) {
+      setTimeout(launchFW, 1500);
+      setTimeout(launchFW, 5000);
+    }
+
+    const wait = timings[idx] || 5000;
+    idx++;
+    setTimeout(goNext, wait);
+  }
+
+  setTimeout(goNext, 600);
+
+  // Continuous ambient firework sparkles after midpoint
+  setTimeout(function sparkLoop() {
+    if (idx > 2) launchFW();
+    setTimeout(sparkLoop, 18000);
+  }, 22000);
+}
 
 // ═══════════════════════════════════════════════════════════
 //  WEB AUDIO — HAPPY BIRTHDAY MELODY
