@@ -2,923 +2,382 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Happy Birthday Tharsa 💕</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:      #03000e;
-  --rose:    #ff6b8a;
-  --rose-lt: #ffb3c6;
-  --rose-dp: #c2185b;
-  --gold:    #d4af37;
-  --gold-lt: #f7e7a0;
-  --champ:   #f7e7ce;
-  --lav:     #c084fc;
-  --w:       #fff8f8;
-  --muted:   rgba(255,238,248,.55);
-}
+:root{--rose:#ff6b8a;--rose-lt:#ffb3c6;--gold:#d4af37;--lav:#c084fc;--w:#fff8f8}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--w);font-family:'Cormorant Garamond',serif;overflow-x:hidden;cursor:none}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:1}
+html,body{width:100%;height:100%;overflow:hidden}
 
-/* ── LOADER ── */
-#loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;transition:opacity 1.2s ease,visibility 1.2s ease}
-#loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-.ld-hearts{font-size:2rem;letter-spacing:1rem;animation:pulse 1.4s ease infinite}
-.ld-name{display:flex;gap:0.05em;line-height:1}
-.ll{font-family:'Great Vibes',cursive;font-size:clamp(4rem,12vw,7rem);color:var(--rose);opacity:0;display:inline-block;animation:letterIn .6s cubic-bezier(.34,1.56,.64,1) forwards;text-shadow:0 0 40px rgba(255,107,138,.5)}
-@keyframes letterIn{from{opacity:0;transform:translateY(-40px) rotate(-12deg) scale(.7)}to{opacity:1;transform:none}}
-.ld-sub{font-size:.85rem;letter-spacing:6px;text-transform:uppercase;color:var(--gold);opacity:0;animation:fadeIn .8s ease forwards 1.4s}
-@keyframes fadeIn{to{opacity:.8}}
-
-/* ── CURSOR ── */
-#cur{position:fixed;width:14px;height:14px;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
-#cdot{width:8px;height:8px;background:var(--rose);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 0 12px var(--rose),0 0 24px rgba(255,107,138,.4)}
-#cring{width:32px;height:32px;border:1px solid rgba(255,107,138,.45);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:all .18s ease}
-body.hov #cring{width:50px;height:50px;border-color:rgba(255,107,138,.9)}
-.glitter{position:fixed;border-radius:50%;pointer-events:none;z-index:9997;animation:glOut .8s ease forwards}
-@keyframes glOut{0%{opacity:1;transform:scale(1) translate(0,0)}100%{opacity:0;transform:scale(0) translate(var(--dx),var(--dy))}}
-
-/* ── PROGRESS ── */
-#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--lav),var(--gold));z-index:200;box-shadow:0 0 8px var(--rose)}
-
-/* ── THREE.JS BG ── */
-#bgc{position:fixed;inset:0;width:100%;height:100%;z-index:0}
-
-/* ── ORBS ── */
-.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.1;pointer-events:none;z-index:0;animation:floatOrb ease-in-out infinite}
-.o1{width:600px;height:600px;background:var(--rose);top:-150px;right:-150px;animation-duration:10s}
-.o2{width:500px;height:500px;background:var(--lav);bottom:5%;left:-100px;animation-duration:13s;animation-delay:-4s}
-.o3{width:400px;height:400px;background:var(--gold);top:35%;right:5%;animation-duration:9s;animation-delay:-7s}
-@keyframes floatOrb{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-40px) scale(1.05)}}
-
-/* ── HEARTS ── */
-#hbox{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
-.fh{position:absolute;bottom:-50px;opacity:0;animation:hRise linear infinite}
-@keyframes hRise{0%{opacity:0;transform:translateY(0) rotate(-15deg) scale(.5)}8%{opacity:.7}90%{opacity:.3}100%{opacity:0;transform:translateY(-110vh) rotate(20deg) scale(1.1)}}
-
-/* ── FIREWORKS ── */
-#fwc{position:fixed;inset:0;pointer-events:none;z-index:100;display:none}
-
-/* ── LAYOUT ── */
-.content{position:relative;z-index:3}
-.sec{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6rem 2rem;position:relative}
-
-/* ── HERO ── */
-.hero{text-align:center}
-.h-eye{font-size:.78rem;letter-spacing:10px;text-transform:uppercase;color:var(--gold);opacity:0;animation:slideUp 1s ease forwards .4s}
-.h-title{font-family:'Great Vibes',cursive;font-size:clamp(5rem,13vw,10.5rem);line-height:1;margin:.2em 0;background:linear-gradient(135deg,var(--rose-lt) 0%,var(--rose) 45%,var(--lav) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 40px rgba(255,107,138,.25));opacity:0;animation:slideUp 1.4s ease forwards .9s}
-.h-name{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3.5vw,2.8rem);font-style:italic;color:var(--gold-lt);letter-spacing:5px;opacity:0;animation:slideUp 1s ease forwards 1.8s}
-.h-dk{font-family:'Great Vibes',cursive;font-size:clamp(2rem,5vw,3.5rem);color:var(--rose-lt);opacity:0;animation:slideUp 1s ease forwards 2.5s;filter:drop-shadow(0 0 20px rgba(255,107,138,.3))}
-.h-date{font-size:.82rem;letter-spacing:6px;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;opacity:0;animation:slideUp .8s ease forwards 3.2s}
-.scue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:slideUp .8s ease forwards 4s}
-.sline{width:1px;height:55px;background:linear-gradient(to bottom,transparent,var(--rose),transparent);animation:drip 2s ease-in-out infinite}
-.slbl{font-size:.62rem;letter-spacing:5px;text-transform:uppercase;color:var(--rose)}
-@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-@keyframes drip{0%,100%{transform:scaleY(.4) translateY(-10px);opacity:.4}50%{transform:scaleY(1) translateY(0);opacity:1}}
-
-/* ── DIVIDER ── */
-.div{display:flex;align-items:center;gap:1.2rem;width:280px;margin:2.5rem auto}
-.dline{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--rose),transparent)}
-.dicon{color:var(--rose);font-size:.85rem}
-
-/* ── MESSAGE CARD ── */
-.mcard{max-width:680px;background:rgba(255,255,255,.025);border:1px solid rgba(255,107,138,.12);backdrop-filter:blur(24px);padding:4rem;position:relative;overflow:hidden}
-.mcard::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(255,107,138,.06),transparent 55%),radial-gradient(circle at 80% 80%,rgba(192,132,252,.06),transparent 55%);pointer-events:none}
-.morn{font-family:'Great Vibes',cursive;font-size:6rem;color:var(--rose);opacity:.15;position:absolute;top:.5rem;left:1.5rem;line-height:1;pointer-events:none}
-.mq{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);font-style:italic;line-height:1.75;color:var(--champ);margin-bottom:2rem;position:relative}
-.msig{font-size:.82rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold)}
-
-/* ── SECTION LABELS ── */
-.slabel{font-size:.72rem;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
-.stitle{font-family:'Great Vibes',cursive;font-size:clamp(3rem,6vw,5rem);color:var(--rose-lt);margin-bottom:.5rem;filter:drop-shadow(0 0 18px rgba(255,107,138,.3))}
-
-/* ── CAKE SECTION ── */
-.cake-wrap{position:relative;display:flex;flex-direction:column;align-items:center;margin-top:1.5rem}
-#cakeCanvas{border-radius:4px;cursor:pointer;display:block}
-.ck-hint{font-size:.76rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose-lt);margin-top:1rem;opacity:.7;transition:all .6s ease;text-align:center}
-.ck-hint.won{color:var(--gold);opacity:1;letter-spacing:6px}
-
-/* ── AUDIO SECTION ── */
-.audio-row{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;margin-top:2rem}
-.abtn{display:flex;flex-direction:column;align-items:center;gap:.8rem;padding:2rem 3rem;background:rgba(255,255,255,.03);border:1px solid rgba(255,107,138,.2);cursor:pointer;transition:all .4s ease;min-width:180px;position:relative;overflow:hidden}
-.abtn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,107,138,.1),rgba(192,132,252,.1));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
-.abtn:hover{border-color:rgba(255,107,138,.6);transform:translateY(-6px);box-shadow:0 16px 50px rgba(255,107,138,.15)}
-.abtn:hover::before{transform:scaleX(1)}
-.abtn.playing{border-color:var(--gold);box-shadow:0 0 30px rgba(212,175,55,.2)}
-.a-icon{font-size:2.5rem;animation:pulse 2s ease infinite;line-height:1}
-.a-lbl{font-size:.78rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose-lt)}
-.note{position:absolute;top:50%;left:50%;opacity:0;font-size:1.5rem;animation:noteFloat 1.5s ease forwards}
-@keyframes noteFloat{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}30%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--nx)),calc(-50% - 80px)) scale(1.2)}}
-
-/* ── MEMORIES ── */
-.mem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:860px;width:100%;margin:2.5rem auto 0}
-.mc{aspect-ratio:3/4;background:rgba(255,255,255,.025);border:1px solid rgba(255,107,138,.1);overflow:hidden;position:relative;transition:all .4s ease}
-.mc::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(255,107,138,.08))}
-.mc:hover{border-color:rgba(255,107,138,.45);transform:translateY(-10px);box-shadow:0 24px 60px rgba(255,107,138,.12)}
-.mph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:2.8rem;background:linear-gradient(135deg,rgba(255,107,138,.04),rgba(192,132,252,.04));opacity:.35}
-.mc:nth-child(2){margin-top:2.5rem}
-.mc:nth-child(4){margin-top:-2rem}
-.mc:nth-child(6){margin-top:-1rem}
-
-/* ── FINAL ── */
-.final-love{font-family:'Great Vibes',cursive;font-size:clamp(4.5rem,11vw,8.5rem);background:linear-gradient(120deg,var(--rose-lt),var(--gold),var(--lav),var(--rose));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 5s ease infinite;filter:drop-shadow(0 0 30px rgba(255,107,138,.2))}
-@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.final-msg{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.25rem);font-style:italic;color:var(--muted);max-width:480px;line-height:1.9;margin:2rem auto;text-align:center}
-.cbtn{margin-top:1.5rem;padding:1rem 3.5rem;background:transparent;border:1px solid rgba(255,107,138,.5);color:var(--rose-lt);font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:6px;text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;transition:color .4s ease,box-shadow .4s ease}
-.cbtn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--rose-dp),var(--rose));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:-1}
-.cbtn:hover{color:#fff;box-shadow:0 0 40px rgba(255,107,138,.25)}
-.cbtn:hover::before{transform:scaleX(1)}
-
-/* ── REVEAL ── */
-.rev{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
-.rev.on{opacity:1;transform:none}
-.rev:nth-child(2){transition-delay:.12s}
-.rev:nth-child(3){transition-delay:.24s}
-
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.2)}28%{transform:scale(1)}42%{transform:scale(1.12)}70%{transform:scale(1)}}
-
-/* ── START OVERLAY ── */
-#startOvr{position:fixed;inset:0;background:radial-gradient(ellipse at center,#0d0020 0%,#03000e 70%);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity 1.5s ease,visibility 1.5s ease}
-#startOvr.hide{opacity:0;visibility:hidden;pointer-events:none}
-.sov-inner{text-align:center;padding:2rem;max-width:600px}
-.sov-ring{width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,107,138,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 2rem;position:relative;animation:ringPulse 3s ease infinite}
-.sov-ring::before{content:'';position:absolute;inset:-12px;border-radius:50%;border:1px solid rgba(255,107,138,.08);animation:ringPulse 3s ease infinite .5s}
-.sov-ring::after{content:'';position:absolute;inset:-24px;border-radius:50%;border:1px solid rgba(255,107,138,.04);animation:ringPulse 3s ease infinite 1s}
-@keyframes ringPulse{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.06);opacity:1}}
-.sov-heart{font-size:4.5rem;animation:heartbeat 1.4s ease infinite;filter:drop-shadow(0 0 20px rgba(255,107,138,.6))}
-.sov-pre{font-size:.78rem;letter-spacing:8px;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;opacity:.8}
-.sov-name{font-family:'Great Vibes',cursive;font-size:clamp(4.5rem,13vw,7.5rem);line-height:1;background:linear-gradient(135deg,var(--rose-lt),var(--rose),var(--lav));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(255,107,138,.3));margin-bottom:.3rem}
-.sov-date{font-size:.8rem;letter-spacing:6px;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
-.sov-btn{padding:1.2rem 4.5rem;background:transparent;border:1px solid rgba(255,107,138,.55);color:var(--rose-lt);font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:7px;text-transform:uppercase;cursor:pointer;transition:all .4s ease;position:relative;overflow:hidden}
-.sov-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--rose-dp),var(--rose));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;z-index:-1}
-.sov-btn:hover,.sov-btn:focus{color:#fff;outline:none;box-shadow:0 0 50px rgba(255,107,138,.3)}
-.sov-btn:hover::before,.sov-btn:focus::before{transform:scaleX(1)}
-.sov-note{font-size:.66rem;letter-spacing:5px;color:var(--muted);text-transform:uppercase;margin-top:1.8rem;opacity:.7}
-/* auto-scroll progress indicator */
-#autoBar{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);display:none;gap:.5rem;align-items:center;z-index:50}
-#autoBar.show{display:flex}
-.ab-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,107,138,.3);transition:all .4s ease}
-.ab-dot.act{background:var(--rose);box-shadow:0 0 8px var(--rose);transform:scale(1.4)}
-
-@media(max-width:700px){
-  .mem-grid{grid-template-columns:repeat(2,1fr)}
-  .mc:nth-child(n){margin-top:0}
-  .mc:nth-child(even){margin-top:2rem}
-  .mcard{padding:2rem 1.5rem}
-  .audio-row{gap:1rem}
+body{
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(180,0,100,.35) 0%,transparent 55%),
+    radial-gradient(ellipse at 75% 80%,rgba(80,0,160,.35) 0%,transparent 55%),
+    linear-gradient(160deg,#1e0040 0%,#0d0020 50%,#03000e 100%);
+  color:var(--w);
+  font-family:'Cormorant Garamond',serif;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:100vh;
+  position:relative;
+  user-select:none;-webkit-user-select:none;
 }
-@media(max-width:440px){
-  .mem-grid{grid-template-columns:1fr}
-  .mc:nth-child(n){margin-top:0}
+
+/* grain */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.03;pointer-events:none;z-index:100}
+
+/* confetti canvas */
+#conf{position:fixed;inset:0;pointer-events:none;z-index:1}
+
+/* balloons */
+.bl{position:fixed;bottom:-70px;width:36px;height:46px;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;animation:bRise var(--d) ease-in var(--dl) infinite;left:var(--l);background:var(--c);opacity:.72;box-shadow:inset -4px -5px 8px rgba(0,0,0,.18),inset 4px 5px 8px rgba(255,255,255,.18);pointer-events:none;z-index:2}
+.bl::before{content:'';position:absolute;top:10px;left:8px;width:10px;height:7px;background:rgba(255,255,255,.38);border-radius:50%;transform:rotate(-38deg)}
+.bl::after{content:'';position:absolute;bottom:-18px;left:50%;transform:translateX(-50%);width:1px;height:18px;background:rgba(255,255,255,.3)}
+@keyframes bRise{0%{transform:translateY(0) rotate(-4deg);opacity:.72}30%{transform:translateY(-30vh) rotate(4deg)}60%{transform:translateY(-65vh) rotate(-3deg)}100%{transform:translateY(-115vh) rotate(2deg);opacity:0}}
+
+/* hearts */
+#hbox{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+.fh{position:absolute;bottom:-40px;pointer-events:none;animation:hRise linear infinite}
+@keyframes hRise{0%{opacity:0;transform:translateY(0) scale(.5) rotate(-15deg)}8%{opacity:.75}90%{opacity:.3}100%{opacity:0;transform:translateY(-108vh) scale(1.1) rotate(18deg)}}
+
+/* fireworks */
+#fwc{position:fixed;inset:0;pointer-events:none;z-index:50;display:none}
+
+/* ── MAIN LAYOUT ── */
+.celebrate{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;padding:.6rem 1.2rem;gap:.35rem}
+
+/* stars */
+.star-row{font-size:.78rem;letter-spacing:.6rem;color:var(--gold);animation:twinkle 2.2s ease-in-out infinite;margin-bottom:.1rem}
+@keyframes twinkle{0%,100%{opacity:.5;text-shadow:none}50%{opacity:1;text-shadow:0 0 12px rgba(212,175,55,.8)}}
+
+/* "Happy Birthday" */
+.hb-lbl{font-size:clamp(.82rem,4.5vw,1.3rem);font-weight:300;letter-spacing:.65em;text-transform:uppercase;color:var(--gold);animation:glow 3s ease-in-out infinite}
+@keyframes glow{0%,100%{text-shadow:0 0 8px rgba(212,175,55,.3)}50%{text-shadow:0 0 22px rgba(212,175,55,.9),0 0 45px rgba(212,175,55,.35)}}
+
+/* Name */
+.hb-name{font-family:'Great Vibes',cursive;font-size:clamp(4.2rem,19vw,7rem);line-height:1;background:linear-gradient(120deg,var(--rose-lt),var(--rose),var(--lav),var(--rose-lt));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s ease infinite,namePop 3s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,107,138,.35))}
+@keyframes shimmer{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes namePop{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+
+/* Nick */
+.hb-nick{font-family:'Great Vibes',cursive;font-size:clamp(1.6rem,7.5vw,2.8rem);color:var(--rose-lt);filter:drop-shadow(0 0 10px rgba(255,107,138,.3));animation:nickFloat 2.8s ease-in-out infinite}
+@keyframes nickFloat{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(-3px);opacity:1}}
+
+/* Date */
+.hb-date{font-size:clamp(.7rem,3.2vw,.95rem);letter-spacing:.45em;text-transform:uppercase;color:rgba(212,175,55,.75);margin-bottom:.2rem}
+
+/* Cake */
+.cake-area{display:flex;flex-direction:column;align-items:center;gap:.35rem;margin-top:.2rem}
+#cakeCanvas{display:block;border-radius:6px}
+.ck-lbl{font-size:clamp(.6rem,2.8vw,.8rem);letter-spacing:.35em;text-transform:uppercase;color:rgba(255,179,198,.7);transition:all .6s ease;text-align:center}
+.ck-lbl.won{color:var(--gold);letter-spacing:.5em;text-shadow:0 0 14px rgba(212,175,55,.5)}
+
+/* music button */
+#mbtn{position:fixed;bottom:1.2rem;right:1.2rem;width:50px;height:50px;border-radius:50%;background:rgba(255,107,138,.12);border:1px solid rgba(255,107,138,.4);color:var(--rose-lt);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:60;backdrop-filter:blur(8px);transition:all .35s ease;animation:btnGlow 2.5s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+#mbtn:active,#mbtn.on{background:rgba(255,107,138,.28);border-color:var(--rose);box-shadow:0 0 22px rgba(255,107,138,.35)}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 8px rgba(255,107,138,.18)}50%{box-shadow:0 0 22px rgba(255,107,138,.42)}}
+
+/* landscape short screens */
+@media(orientation:landscape)and(max-height:520px){
+  .celebrate{flex-direction:row;gap:1.5rem;padding:.4rem 2rem}
+  .text-col{display:flex;flex-direction:column;align-items:center;gap:.15rem}
+  .hb-name{font-size:clamp(3rem,14vw,4.5rem)}
+  .hb-nick{font-size:clamp(1.2rem,5vw,2rem)}
+  #cakeCanvas{max-width:240px!important}
 }
 </style>
 </head>
 <body>
 
-<!-- START OVERLAY -->
-<div id="startOvr">
-  <div class="sov-inner">
-    <div class="sov-ring"><span class="sov-heart">♥</span></div>
-    <p class="sov-pre">A birthday surprise for</p>
-    <div class="sov-name">Tharsa</div>
-    <p class="sov-date">May 31 &nbsp;✦&nbsp; Your Special Day</p>
-    <button class="sov-btn" onclick="startExperience()">Begin the Magic ✦</button>
-    <p class="sov-note">🔊 Turn up your volume</p>
-  </div>
-</div>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="ld-hearts">♥ ♥ ♥</div>
-  <div class="ld-name">
-    <span class="ll" style="--i:0;animation-delay:.2s">T</span>
-    <span class="ll" style="--i:1;animation-delay:.36s">h</span>
-    <span class="ll" style="--i:2;animation-delay:.52s">a</span>
-    <span class="ll" style="--i:3;animation-delay:.68s">r</span>
-    <span class="ll" style="--i:4;animation-delay:.84s">s</span>
-    <span class="ll" style="--i:5;animation-delay:1s">a</span>
-  </div>
-  <div class="ld-sub">Happy Birthday ✦ May 31</div>
-</div>
-
-<!-- CURSOR -->
-<div id="cur"><div id="cdot"></div><div id="cring"></div></div>
-
-<!-- PROGRESS -->
-<div id="prog" style="width:0"></div>
-
-<!-- AMBIENT ORBS -->
-<div class="orb o1"></div>
-<div class="orb o2"></div>
-<div class="orb o3"></div>
-
-<!-- BACKGROUND THREE.JS -->
-<canvas id="bgc"></canvas>
-
-<!-- AUTO-SCROLL DOTS -->
-<div id="autoBar">
-  <div class="ab-dot" data-i="0"></div>
-  <div class="ab-dot" data-i="1"></div>
-  <div class="ab-dot" data-i="2"></div>
-  <div class="ab-dot" data-i="3"></div>
-  <div class="ab-dot" data-i="4"></div>
-  <div class="ab-dot" data-i="5"></div>
-</div>
-
-<!-- HEARTS -->
+<canvas id="conf"></canvas>
 <div id="hbox"></div>
 
-<!-- FIREWORKS -->
+<!-- 8 balloons, different colors & timings -->
+<div class="bl" style="--c:#ff6b8a;--l:4%;--d:9s;--dl:0s"></div>
+<div class="bl" style="--c:#d4af37;--l:14%;--d:11s;--dl:1.8s"></div>
+<div class="bl" style="--c:#c084fc;--l:26%;--d:8s;--dl:3.2s"></div>
+<div class="bl" style="--c:#ff4081;--l:40%;--d:12s;--dl:.6s"></div>
+<div class="bl" style="--c:#7c4dff;--l:55%;--d:10s;--dl:2.4s"></div>
+<div class="bl" style="--c:#ffd700;--l:68%;--d:9s;--dl:4.5s"></div>
+<div class="bl" style="--c:#ff80ab;--l:80%;--d:11s;--dl:1.2s"></div>
+<div class="bl" style="--c:#80cbc4;--l:92%;--d:8s;--dl:5s"></div>
+
 <canvas id="fwc"></canvas>
 
-<!-- ══════════════════════════════════════════════════ -->
-<div class="content">
-
-  <!-- HERO -->
-  <section class="sec hero">
-    <p class="h-eye">A message straight from the heart</p>
-    <h1 class="h-title">Happy Birthday</h1>
-    <h2 class="h-name">Tharsa</h2>
-    <p class="h-dk">My Darling Kutti ♥</p>
-    <p class="h-date">May 31 &nbsp;✦&nbsp; Your Most Magical Day</p>
-    <div class="scue">
-      <div class="sline"></div>
-      <span class="slbl">Scroll</span>
-    </div>
-  </section>
-
-  <!-- MESSAGE -->
-  <section class="sec" style="background:radial-gradient(ellipse at center,rgba(25,0,40,.7),transparent 70%)">
-    <div class="mcard rev">
-      <span class="morn">"</span>
-      <p class="mq">
-        On this beautiful day, Tharsa, I want you to know that you are the most precious
-        person in my world. Every moment with you is a treasure I hold forever in my heart.
-        You make every single day feel like magic — and today, the universe celebrates you.
-      </p>
-      <div class="div"><div class="dline"></div><span class="dicon">♥</span><div class="dline"></div></div>
-      <p class="msig">With every beat of my heart — always yours</p>
-    </div>
-  </section>
-
-  <!-- 3D CAKE -->
-  <section class="sec" style="background:radial-gradient(ellipse at 50% 60%,rgba(20,0,35,.9),transparent 70%);text-align:center">
-    <p class="slabel rev">Make a wish, Darling Kutti</p>
-    <h2 class="stitle rev">Your Birthday Cake</h2>
-    <div class="cake-wrap rev">
-      <canvas id="cakeCanvas"></canvas>
-      <p class="ck-hint" id="ckHint">✦ Click the cake to blow out the candles ✦</p>
-    </div>
-  </section>
-
-  <!-- AUDIO -->
-  <section class="sec" style="background:radial-gradient(ellipse at center,rgba(30,0,50,.7),transparent 70%);text-align:center">
-    <p class="slabel rev">For you, Tharsa</p>
-    <h2 class="stitle rev">Music &amp; Message</h2>
-    <div class="audio-row rev">
-      <div class="abtn" id="songBtn" onclick="playSong(this)">
-        <span class="a-icon">♪</span>
-        <span class="a-lbl">Play Birthday Song</span>
-      </div>
-      <div class="abtn" id="voiceBtn" onclick="speakMsg(this)">
-        <span class="a-icon">🎤</span>
-        <span class="a-lbl">Hear a Message</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MEMORIES -->
-  <section class="sec">
-    <p class="slabel rev">Our Story</p>
-    <h2 class="stitle rev">Precious Moments</h2>
-    <div class="mem-grid">
-      <div class="mc rev"><div class="mph">📸</div></div>
-      <div class="mc rev"><div class="mph">💕</div></div>
-      <div class="mc rev"><div class="mph">🌹</div></div>
-      <div class="mc rev"><div class="mph">✨</div></div>
-      <div class="mc rev"><div class="mph">💫</div></div>
-      <div class="mc rev"><div class="mph">🎂</div></div>
-    </div>
-    <p style="margin-top:2rem;font-size:.72rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase" class="rev">Replace placeholders with your photos</p>
-  </section>
-
-  <!-- FINAL -->
-  <section class="sec" style="background:radial-gradient(ellipse at center,rgba(35,0,55,.85),transparent 70%);text-align:center">
-    <p class="slabel rev">Always &amp; Forever</p>
-    <div class="final-love rev">I love you,</div>
-    <div class="final-love rev" style="font-size:clamp(3.5rem,9vw,7rem)">Tharsa</div>
-    <p class="final-msg rev">
-      You deserve every happiness, every dream, every beautiful thing this world holds.
-      My darling kutti — today and every day, you are my whole heart.
-    </p>
-    <div class="div rev"><div class="dline"></div><span class="dicon">♥</span><div class="dline"></div></div>
-    <button class="cbtn rev" onclick="launchFW()">Celebrate ✦</button>
-  </section>
-
+<!-- MAIN -->
+<div class="celebrate" id="celebrate">
+  <div class="text-col">
+    <div class="star-row">✦ &nbsp; ✦ &nbsp; ✦</div>
+    <p class="hb-lbl">Happy Birthday</p>
+    <h1 class="hb-name">Tharsa</h1>
+    <p class="hb-nick">My Darling Kutti ♥</p>
+    <p class="hb-date">May 31</p>
+  </div>
+  <div class="cake-area">
+    <canvas id="cakeCanvas"></canvas>
+    <p class="ck-lbl" id="ckLbl">✦ Make a wish! ✦</p>
+  </div>
 </div>
+
+<button id="mbtn" onclick="toggleMusic(this)" title="Play song">♪</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 <script>
-// ═══════════════════════════════════════════════════════════
-//  CONFIG
-// ═══════════════════════════════════════════════════════════
-const NAME  = "Tharsa";
-const BDAY  = "May 31";
-const NICK  = "Darling Kutti";
-const VOICE_MSG =
-  `Happy Birthday ${NAME}! My ${NICK}. Today, the thirty-first of May, ` +
-  `is your most magical day. You are the light of my life, my entire universe. ` +
-  `I love you with all my heart, always and forever. ` +
-  `May every wish you make today come true.`;
-
-// ═══════════════════════════════════════════════════════════
-//  LOADER
-// ═══════════════════════════════════════════════════════════
-window.addEventListener("load", () => {
-  setTimeout(() => document.getElementById("loader").classList.add("hide"), 2400);
-});
-
-// ═══════════════════════════════════════════════════════════
-//  CURSOR
-// ═══════════════════════════════════════════════════════════
-const cur = document.getElementById("cur");
-const ring = document.getElementById("cring");
-let cx = 0, cy = 0, rx = 0, ry = 0;
-document.addEventListener("mousemove", e => { cx = e.clientX; cy = e.clientY; });
-(function moveCur() {
-  requestAnimationFrame(moveCur);
-  rx += (cx - rx) * 0.13; ry += (cy - ry) * 0.13;
-  cur.style.left = cx + "px"; cur.style.top = cy + "px";
-  ring.style.transform = `translate(${rx-cx-1}px,${ry-cy-1}px) translate(-50%,-50%)`;
-})();
-document.querySelectorAll("button,.mc,.abtn,#cakeCanvas").forEach(el => {
-  el.addEventListener("mouseenter", () => document.body.classList.add("hov"));
-  el.addEventListener("mouseleave", () => document.body.classList.remove("hov"));
-});
-
-// ═══════════════════════════════════════════════════════════
-//  GLITTER TRAIL
-// ═══════════════════════════════════════════════════════════
-document.addEventListener("mousemove", e => {
-  if (Math.random() > .65) return;
-  const g = document.createElement("div");
-  g.className = "glitter";
-  const sz = Math.random() * 5 + 2;
-  Object.assign(g.style, {
-    left: e.clientX + "px", top: e.clientY + "px",
-    width: sz + "px", height: sz + "px",
-    background: Math.random() > .5 ? "#d4af37" : "#ff6b8a",
-    "--dx": (Math.random() - .5) * 30 + "px",
-    "--dy": -(Math.random() * 30 + 10) + "px",
-    animationDuration: (Math.random() * .6 + .4) + "s"
-  });
-  document.body.appendChild(g);
-  setTimeout(() => g.remove(), 1000);
-});
-
-// ═══════════════════════════════════════════════════════════
-//  PROGRESS BAR
-// ═══════════════════════════════════════════════════════════
-window.addEventListener("scroll", () => {
-  const pct = scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
-  document.getElementById("prog").style.width = pct + "%";
-});
-
-// ═══════════════════════════════════════════════════════════
-//  SCROLL REVEALS
-// ═══════════════════════════════════════════════════════════
-const revObs = new IntersectionObserver(
-  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("on"); }),
-  { threshold: .1 }
-);
-document.querySelectorAll(".rev").forEach(el => revObs.observe(el));
-
-// ═══════════════════════════════════════════════════════════
-//  FLOATING HEARTS (CSS)
-// ═══════════════════════════════════════════════════════════
-const hbox = document.getElementById("hbox");
-const HSYMS = ["♥","❤","💕","💗","💖","💓","✦","✿","♡"];
-function spawnH() {
-  const h = document.createElement("div");
-  h.className = "fh";
-  h.textContent = HSYMS[Math.floor(Math.random() * HSYMS.length)];
-  h.style.cssText = `left:${Math.random()*100}%;font-size:${Math.random()*1.5+.5}rem;color:hsl(${335+Math.random()*40},80%,${60+Math.random()*20}%);animation-duration:${Math.random()*9+9}s;animation-delay:${Math.random()*3}s`;
-  hbox.appendChild(h);
-  setTimeout(() => h.remove(), 22000);
-}
-setInterval(spawnH, 750);
-for (let i = 0; i < 7; i++) spawnH();
-
-// ═══════════════════════════════════════════════════════════
-//  GALAXY BACKGROUND (Three.js)
-// ═══════════════════════════════════════════════════════════
-(function initGalaxy() {
-  const canvas = document.getElementById("bgc");
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setSize(innerWidth, innerHeight);
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 3000);
-  camera.position.z = 550;
-
-  // Stars
-  const N = 14000;
-  const sPos = new Float32Array(N * 3), sCol = new Float32Array(N * 3);
-  const pal = [[1,1,1],[1,.85,.9],[.85,.9,1],[1,.92,.6],[.9,.7,1]];
-  for (let i = 0; i < N; i++) {
-    sPos[i*3]   = (Math.random()-.5)*3200;
-    sPos[i*3+1] = (Math.random()-.5)*3200;
-    sPos[i*3+2] = (Math.random()-.5)*2000;
-    const c = pal[Math.floor(Math.random()*pal.length)];
-    sCol[i*3]=c[0]; sCol[i*3+1]=c[1]; sCol[i*3+2]=c[2];
-  }
-  const sGeo = new THREE.BufferGeometry();
-  sGeo.setAttribute("position", new THREE.BufferAttribute(sPos, 3));
-  sGeo.setAttribute("color",    new THREE.BufferAttribute(sCol, 3));
-  const sMat = new THREE.PointsMaterial({ size:1.4, vertexColors:true, transparent:true, opacity:.82 });
-  scene.add(new THREE.Points(sGeo, sMat));
-
-  // Big glow stars
-  const bN = 260, bP = new Float32Array(bN*3);
-  for (let i=0;i<bN;i++){bP[i*3]=(Math.random()-.5)*2400;bP[i*3+1]=(Math.random()-.5)*2400;bP[i*3+2]=(Math.random()-.5)*800}
-  const bGeo=new THREE.BufferGeometry();bGeo.setAttribute("position",new THREE.BufferAttribute(bP,3));
-  const bStar=new THREE.Points(bGeo,new THREE.PointsMaterial({size:3.5,color:0xffcce0,transparent:true,opacity:.55}));
-  scene.add(bStar);
-
-  // Nebula
-  const nN=4500,nP=new Float32Array(nN*3),nC=new Float32Array(nN*3);
-  const nPal=[[.55,.1,.3],[.4,.1,.55],[.1,.05,.45],[.65,.15,.4]];
-  for(let i=0;i<nN;i++){const a=Math.random()*Math.PI*2,r=Math.random()*900+80;nP[i*3]=Math.cos(a)*r+(Math.random()-.5)*180;nP[i*3+1]=Math.sin(a)*r*.28+(Math.random()-.5)*90;nP[i*3+2]=(Math.random()-.5)*600;const c=nPal[Math.floor(Math.random()*nPal.length)];nC[i*3]=c[0];nC[i*3+1]=c[1];nC[i*3+2]=c[2]}
-  const nGeo=new THREE.BufferGeometry();nGeo.setAttribute("position",new THREE.BufferAttribute(nP,3));nGeo.setAttribute("color",new THREE.BufferAttribute(nC,3));
-  const neb=new THREE.Points(nGeo,new THREE.PointsMaterial({size:2.8,vertexColors:true,transparent:true,opacity:.13}));
-  scene.add(neb);
-
-  // 3D floating hearts
-  function hShape(){const s=new THREE.Shape();s.moveTo(25,25);s.bezierCurveTo(25,25,20,0,0,0);s.bezierCurveTo(-30,0,-30,35,-30,35);s.bezierCurveTo(-30,55,-10,77,25,95);s.bezierCurveTo(60,77,80,55,80,35);s.bezierCurveTo(80,35,80,0,50,0);s.bezierCurveTo(35,0,25,25,25,25);return s}
-  const hGeo=new THREE.ShapeGeometry(hShape());
-  const hColors=[0xff6b8a,0xffb3c6,0xff4470,0xe91e7a,0xffd0df];
-  const hearts=[];
-  for(let i=0;i<30;i++){
-    const m=new THREE.MeshBasicMaterial({color:hColors[Math.floor(Math.random()*hColors.length)],side:THREE.DoubleSide,transparent:true,opacity:0});
-    const mesh=new THREE.Mesh(hGeo,m);
-    const sc=Math.random()*.12+.04;mesh.scale.set(sc,sc,sc);
-    mesh.position.set((Math.random()-.5)*1400,Math.random()*800-800,(Math.random()-.5)*300+100);
-    mesh.rotation.z=(Math.random()-.5)*.6;
-    mesh.userData={spd:Math.random()*.38+.12,rot:(Math.random()-.5)*.004,t:0,delay:Math.random()*6};
-    scene.add(mesh);hearts.push(mesh);
-  }
-
-  let mx=0,my=0,tx=0,ty=0,t=0;
-  document.addEventListener("mousemove",e=>{mx=(e.clientX-innerWidth/2)*.00028;my=(e.clientY-innerHeight/2)*.00028});
-
-  const stars3=scene.children[0];
+// ══════════════════════════════════════════════
+//  CONFETTI
+// ══════════════════════════════════════════════
+(function(){
+  const cv=document.getElementById('conf'),ctx=cv.getContext('2d');
+  let W,H,parts=[];
+  const COLS=['#ff6b8a','#d4af37','#c084fc','#fff','#ff4081','#7c4dff','#ffd700','#ff80ab','#80d8ff','#aed581'];
+  function rsz(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  rsz();window.addEventListener('resize',rsz);
+  function mkP(scatter){return{x:Math.random()*W,y:scatter?Math.random()*H:-20,vx:(Math.random()-.5)*1.8,vy:Math.random()*2.5+.8,c:COLS[Math.floor(Math.random()*COLS.length)],sz:Math.random()*8+3,sh:Math.floor(Math.random()*3),rot:Math.random()*Math.PI*2,rs:(Math.random()-.5)*.12,op:Math.random()*.5+.45,w:Math.random()*Math.PI*2}}
+  const n=Math.min(170,Math.floor(innerWidth*innerHeight/5000));
+  for(let i=0;i<n;i++)parts.push(mkP(true));
+  window.confettiBurst=function(x,y,count){for(let i=0;i<count;i++){const p=mkP(false);p.x=x;p.y=y;p.vx=(Math.random()-.5)*16;p.vy=(Math.random()-.5)*16;p.op=1;parts.push(p)}};
   (function tick(){
-    requestAnimationFrame(tick);t+=.005;
-    tx+=(mx-tx)*.05;ty+=(my-ty)*.05;
-    camera.rotation.y=tx;camera.rotation.x=-ty;
-    stars3.rotation.y=t*.018;stars3.rotation.x=t*.004;
-    bStar.rotation.y=-t*.012;neb.rotation.y=t*.009;
-    hearts.forEach(h=>{
-      h.userData.t+=.005;const ht=h.userData.t;
-      if(ht>h.userData.delay&&h.material.opacity<.65)h.material.opacity=Math.min(.65,(ht-h.userData.delay)*.28);
-      h.position.y+=h.userData.spd;h.rotation.z+=h.userData.rot;
-      if(h.position.y>750){h.position.y=-700;h.position.x=(Math.random()-.5)*1400;h.material.opacity=0;h.userData.t=0;h.userData.delay=Math.random()*4}
+    requestAnimationFrame(tick);ctx.clearRect(0,0,W,H);
+    parts.forEach(p=>{
+      p.y+=p.vy;p.x+=p.vx+Math.sin(p.w)*.45;p.rot+=p.rs;p.w+=.03;
+      if(p.y>H+20)Object.assign(p,mkP(false));
+      ctx.save();ctx.globalAlpha=p.op;ctx.fillStyle=p.c;ctx.translate(p.x,p.y);ctx.rotate(p.rot);
+      if(p.sh===0)ctx.fillRect(-p.sz/2,-p.sz/4,p.sz,p.sz/2);
+      else if(p.sh===1){ctx.beginPath();ctx.arc(0,0,p.sz/2,0,Math.PI*2);ctx.fill()}
+      else{ctx.fillRect(-p.sz/2,-p.sz/6,p.sz,p.sz/3);ctx.fillRect(-p.sz/6,-p.sz/2,p.sz/3,p.sz)}
+      ctx.restore();
     });
-    renderer.render(scene,camera);
   })();
-  window.addEventListener("resize",()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
 })();
 
-// ═══════════════════════════════════════════════════════════
-//  3D CAKE SCENE (Three.js)
-// ═══════════════════════════════════════════════════════════
-let cakeScene, cakeRend, cakeCam, cakeGroup, flames3=[], cLights=[], sparkGeo, sparkData=[];
-let cakeBlown=false, smokePs=[];
-
-function getCakeSize(){const mw=Math.min(500,innerWidth-40);return{w:mw,h:Math.round(mw*480/500)}}
-
-function initCake(){
-  const canvas=document.getElementById("cakeCanvas");
-  const {w,h}=getCakeSize();
-  canvas.width=w;canvas.height=h;
-  canvas.style.width=w+"px";canvas.style.height=h+"px";
-
-  cakeRend=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
-  cakeRend.setPixelRatio(Math.min(devicePixelRatio,2));
-  cakeRend.setSize(w,h);
-  cakeRend.shadowMap.enabled=true;
-  cakeRend.shadowMap.type=THREE.PCFSoftShadowMap;
-
-  cakeScene=new THREE.Scene();
-  cakeCam=new THREE.PerspectiveCamera(44,w/h,.1,100);
-  cakeCam.position.set(0,5,9.5);
-  cakeCam.lookAt(0,1.6,0);
-
-  // Lights
-  cakeScene.add(new THREE.AmbientLight(0x1a0010,2.2));
-  const key=new THREE.DirectionalLight(0xffd0e8,.75);
-  key.position.set(3,8,5);cakeScene.add(key);
-  const fill=new THREE.DirectionalLight(0x200060,.35);
-  fill.position.set(-4,2,-2);cakeScene.add(fill);
-
-  // Candle point lights
-  const CP=[{x:-.6,z:.35},{x:.6,z:.35},{x:0,z:-.5}];
-  CP.forEach(p=>{
-    const l=new THREE.PointLight(0xff8c00,1.8,8);
-    l.position.set(p.x,3.6,p.z);cakeScene.add(l);cLights.push(l);
-  });
-
-  // Materials
-  const F=new THREE.MeshPhongMaterial({color:0xffe8f5,shininess:100,specular:0xffccee});
-  const T1=new THREE.MeshPhongMaterial({color:0x3d0a22,shininess:25,specular:0x150510});
-  const T2=new THREE.MeshPhongMaterial({color:0x4a0d28,shininess:20,specular:0x1a0810});
-  const T3=new THREE.MeshPhongMaterial({color:0x3a0820,shininess:22,specular:0x120408});
-  const PL=new THREE.MeshPhongMaterial({color:0xd4af37,shininess:250,specular:0xffd700,emissive:0x2a1a00});
-  const PE=new THREE.MeshPhongMaterial({color:0xfff0f8,shininess:200,specular:0xffffff});
-  const C1=new THREE.MeshPhongMaterial({color:0xff6b8a,shininess:60});
-  const C2=new THREE.MeshPhongMaterial({color:0xc084fc,shininess:60});
-  const C3=new THREE.MeshPhongMaterial({color:0xd4af37,shininess:200,specular:0xffd700,emissive:0x1a0d00});
-
-  // Label texture
-  const LBL=makeLabelTex();
-  const T1side=new THREE.MeshPhongMaterial({color:0x3d0a22,shininess:25,specular:0x150510,map:LBL});
-
-  cakeGroup=new THREE.Group();
-
-  // PLATE
-  const pl=new THREE.Mesh(new THREE.CylinderGeometry(3.6,3.4,.12,64),PL);pl.position.y=-1.86;cakeGroup.add(pl);
-  const rim=new THREE.Mesh(new THREE.TorusGeometry(3.5,.09,12,64),PL);rim.rotation.x=Math.PI/2;rim.position.y=-1.8;cakeGroup.add(rim);
-
-  // TIER 1 (bottom: center y=-1.05, bottom=-1.8, top=-0.3)
-  const t1=new THREE.Mesh(new THREE.CylinderGeometry(3,3,1.5,64),[T1side,T1,T1]);t1.position.y=-1.05;cakeGroup.add(t1);
-  const f1=new THREE.Mesh(new THREE.CylinderGeometry(3.05,3.05,.15,64),F);f1.position.y=-.225;cakeGroup.add(f1);
-  addDrips(cakeGroup,-.3,3.05,22,F);
-  addPearls(cakeGroup,-1.72,2.98,28,PE);
-
-  // TIER 2 (middle: center y=0.5, bottom=-0.15, top=1.15)
-  const t2=new THREE.Mesh(new THREE.CylinderGeometry(2,2,1.3,64),T2);t2.position.y=.5;cakeGroup.add(t2);
-  const f2=new THREE.Mesh(new THREE.CylinderGeometry(2.05,2.05,.15,64),F);f2.position.y=1.225;cakeGroup.add(f2);
-  addDrips(cakeGroup,1.15,2.05,15,F);
-  addPearls(cakeGroup,-.22,1.98,22,PE);
-  // Deco balls on tier 2
-  for(let i=0;i<8;i++){const a=(i/8)*Math.PI*2;const db=new THREE.Mesh(new THREE.SphereGeometry(.1,12,12),PE);db.position.set(Math.cos(a)*1.6,.7,Math.sin(a)*1.6);cakeGroup.add(db)}
-
-  // TIER 3 (top: center y=1.8, bottom=1.3, top=2.3)
-  const t3=new THREE.Mesh(new THREE.CylinderGeometry(1.3,1.3,1,64),T3);t3.position.y=1.8;cakeGroup.add(t3);
-  const f3=new THREE.Mesh(new THREE.CylinderGeometry(1.35,1.35,.15,64),F);f3.position.y=2.375;cakeGroup.add(f3);
-  addDrips(cakeGroup,2.3,1.35,10,F);
-  addPearls(cakeGroup,1.3,1.28,14,PE);
-  // Sprinkles
-  const SM=[new THREE.MeshPhongMaterial({color:0xff6b8a}),new THREE.MeshPhongMaterial({color:0xd4af37}),new THREE.MeshPhongMaterial({color:0xc084fc})];
-  for(let i=0;i<30;i++){const a=Math.random()*Math.PI*2,r=.5+Math.random()*.65;const sp=new THREE.Mesh(new THREE.CylinderGeometry(.025,.025,.2,5),SM[i%3]);sp.position.set(Math.cos(a)*r,1.8+.5+Math.random()*.35-.18,Math.sin(a)*r);sp.rotation.z=Math.random()*Math.PI;sp.rotation.x=Math.random()*Math.PI;cakeGroup.add(sp)}
-
-  // Heart topper
-  const ht=makeHeart3D(0xff6b8a);ht.position.set(-.27,2.52,.1);ht.rotation.z=-Math.PI*.05;cakeGroup.add(ht);
-
-  // CANDLES
-  const cmats=[C1,C2,C3];
-  CP.forEach((p,i)=>{
-    // Body
-    const cv=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.75,16),cmats[i]);cv.position.set(p.x,2.825,p.z);cakeGroup.add(cv);
-    // Stripe
-    const stripe=new THREE.Mesh(new THREE.CylinderGeometry(.105,.105,.08,16),new THREE.MeshPhongMaterial({color:0xffffff,shininess:80}));stripe.position.set(p.x,2.62,p.z);cakeGroup.add(stripe);
-    // Wick
-    const wk=new THREE.Mesh(new THREE.CylinderGeometry(.012,.012,.18,6),new THREE.MeshPhongMaterial({color:0x111111}));wk.position.set(p.x,3.29,p.z);cakeGroup.add(wk);
-    // Flame group
-    const fg=makeFlame();fg.position.set(p.x,3.45,p.z);cakeGroup.add(fg);
-    flames3.push({group:fg,base:{x:p.x,y:3.45,z:p.z}});
-  });
-
-  // Floating label plane (canvas texture "Tharsa" above cake)
-  const nameTex=makeNameTex();
-  const namePlane=new THREE.Mesh(new THREE.PlaneGeometry(4,.9),new THREE.MeshBasicMaterial({map:nameTex,transparent:true,side:THREE.DoubleSide,depthWrite:false}));
-  namePlane.position.set(0,4.8,0);
-  cakeGroup.userData.namePlane=namePlane;
-  cakeScene.add(namePlane);
-
-  // Sparkle particles around cake
-  const sN=100;const sPos=new Float32Array(sN*3);sparkData=[];
-  for(let i=0;i<sN;i++){const a=Math.random()*Math.PI*2,phi=Math.random()*Math.PI,r=3.2+Math.random()*2;const sx=Math.sin(phi)*Math.cos(a)*r,sy=Math.cos(phi)*r*.5+1.8,sz=Math.sin(phi)*Math.sin(a)*r;sPos[i*3]=sx;sPos[i*3+1]=sy;sPos[i*3+2]=sz;sparkData.push({a,phi,r,spd:(Math.random()-.5)*.01,by:sy})}
-  sparkGeo=new THREE.BufferGeometry();sparkGeo.setAttribute("position",new THREE.BufferAttribute(sPos,3));
-  const sparkPts=new THREE.Points(sparkGeo,new THREE.PointsMaterial({size:.07,color:0xffd700,transparent:true,opacity:.8}));
-  cakeScene.add(sparkPts);
-
-  cakeScene.add(cakeGroup);
-  cakeGroup.rotation.y=Math.PI*.25; // face label toward camera
-
-  // Click to blow
-  canvas.addEventListener("click",blowCandles);
-
-  tickCake();
-
-  window.addEventListener("resize",()=>{
-    const {w:nw,h:nh}=getCakeSize();
-    canvas.width=nw;canvas.height=nh;canvas.style.width=nw+"px";canvas.style.height=nh+"px";
-    cakeRend.setSize(nw,nh);cakeCam.aspect=nw/nh;cakeCam.updateProjectionMatrix();
-  });
+// ══════════════════════════════════════════════
+//  HEARTS
+// ══════════════════════════════════════════════
+const hbox=document.getElementById('hbox');
+const SYM=['♥','❤','💕','♡','✦','💗'];
+function spawnH(){
+  const h=document.createElement('div');h.className='fh';
+  h.textContent=SYM[Math.floor(Math.random()*SYM.length)];
+  h.style.cssText=`left:${Math.random()*100}%;font-size:${Math.random()*1.4+.6}rem;color:hsl(${335+Math.random()*35},80%,${62+Math.random()*18}%);animation-duration:${Math.random()*6+7}s;animation-delay:${Math.random()*2}s`;
+  hbox.appendChild(h);setTimeout(()=>h.remove(),16000);
 }
+setInterval(spawnH,650);for(let i=0;i<10;i++)spawnH();
 
-function makeLabelTex(){
-  const c=document.createElement("canvas");c.width=1024;c.height=300;
-  const ctx=c.getContext("2d");
-  ctx.clearRect(0,0,1024,300);
-  // Subtle border
-  ctx.strokeStyle="rgba(255,180,210,.4)";ctx.lineWidth=2;
-  ctx.strokeRect(24,18,976,264);
-  // Dot border
-  for(let i=0;i<22;i++){ctx.fillStyle="rgba(212,175,55,.5)";ctx.font="16px serif";ctx.textAlign="left";ctx.fillText("✦",50+i*44,32);ctx.fillText("✦",50+i*44,278)}
-  ctx.textAlign="center";
-  ctx.font='76px "Great Vibes",cursive';ctx.fillStyle="rgba(255,220,240,.88)";ctx.fillText("Happy Birthday",512,130);
-  ctx.font='98px "Great Vibes",cursive';ctx.fillStyle="rgba(255,150,180,1)";ctx.fillText("Tharsa",512,240);
-  return new THREE.CanvasTexture(c);
-}
-
-function makeNameTex(){
-  const c=document.createElement("canvas");c.width=512;c.height=100;
-  const ctx=c.getContext("2d");ctx.clearRect(0,0,512,100);
-  const g=ctx.createLinearGradient(0,0,512,0);g.addColorStop(0,"#ffb3c6");g.addColorStop(.5,"#ff6b8a");g.addColorStop(1,"#c084fc");
-  ctx.fillStyle=g;ctx.font='70px "Great Vibes",cursive';ctx.textAlign="center";ctx.fillText("Tharsa ♥",256,72);
-  return new THREE.CanvasTexture(c);
-}
-
-function addDrips(parent,y,r,n,mat){
-  for(let i=0;i<n;i++){
-    const a=(i/n)*Math.PI*2,h=.08+Math.random()*.12;
-    const dr=new THREE.Mesh(new THREE.CylinderGeometry(.055,.032,h,6),mat);
-    dr.position.set(Math.cos(a)*r,y-h/2,Math.sin(a)*r);parent.add(dr);
-    const dp=new THREE.Mesh(new THREE.SphereGeometry(.054,8,8),mat);
-    dp.position.set(Math.cos(a)*r,y-h-.03,Math.sin(a)*r);parent.add(dp);
-  }
-}
-function addPearls(parent,y,r,n,mat){
-  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;const p=new THREE.Mesh(new THREE.SphereGeometry(.07,10,10),mat);p.position.set(Math.cos(a)*r,y,Math.sin(a)*r);parent.add(p)}
-}
-function makeFlame(){
-  const g=new THREE.Group();
-  const o=new THREE.Mesh(new THREE.ConeGeometry(.13,.4,10),new THREE.MeshBasicMaterial({color:0xff7400,transparent:true,opacity:.95}));o.position.y=.2;g.add(o);
-  const m=new THREE.Mesh(new THREE.ConeGeometry(.08,.3,8),new THREE.MeshBasicMaterial({color:0xffc200,transparent:true,opacity:.97}));m.position.y=.16;g.add(m);
-  const k=new THREE.Mesh(new THREE.ConeGeometry(.04,.15,6),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.9}));k.position.y=.1;g.add(k);
-  return g;
-}
-function makeHeart3D(color){
-  const s=new THREE.Shape();const sc=.32;
-  s.moveTo(sc*.25,sc*.25);s.bezierCurveTo(sc*.25,sc*.25,sc*.2,0,0,0);s.bezierCurveTo(-sc*.3,0,-sc*.3,sc*.35,-sc*.3,sc*.35);s.bezierCurveTo(-sc*.3,sc*.55,-sc*.1,sc*.77,sc*.25,sc*.95);s.bezierCurveTo(sc*.6,sc*.77,sc*.8,sc*.55,sc*.8,sc*.35);s.bezierCurveTo(sc*.8,sc*.35,sc*.8,0,sc*.5,0);s.bezierCurveTo(sc*.35,0,sc*.25,sc*.25,sc*.25,sc*.25);
-  const g=new THREE.ShapeGeometry(s);const m=new THREE.MeshPhongMaterial({color,side:THREE.DoubleSide,shininess:80,specular:0xff4470,emissive:0x3a0010});
-  return new THREE.Mesh(g,m);
-}
-
-let cakeT=0;
-function tickCake(){
-  requestAnimationFrame(tickCake);
-  cakeT+=.016;const now=cakeT;
-
-  // Rotate cake slowly
-  if(cakeGroup)cakeGroup.rotation.y+=.004;
-
-  // Flame flicker
-  flames3.forEach((f,i)=>{
-    if(cakeBlown)return;
-    f.group.scale.x=1+Math.sin(now*12+i*2.3)*.14;
-    f.group.scale.z=1+Math.cos(now*9.7+i*1.8)*.14;
-    f.group.scale.y=1+Math.sin(now*8.3+i*3.1)*.07;
-    f.group.position.x=f.base.x+Math.sin(now*11+i)*.025;
-  });
-
-  // Candle light flicker
-  cLights.forEach((l,i)=>{
-    if(cakeBlown){l.intensity*=.92;return}
-    l.intensity=1.5+Math.sin(now*17+i*2.1)*.38+Math.sin(now*8.3+i)*.22;
-  });
-
-  // Float name plane
-  if(cakeGroup&&cakeGroup.userData.namePlane){
-    const np=cakeGroup.userData.namePlane;
-    np.position.y=4.8+Math.sin(now*1.5)*.1;
-    np.rotation.y=cakeGroup.rotation.y; // keep facing camera
-  }
-
-  // Orbit sparkles
-  if(sparkGeo){
-    const sp=sparkGeo.attributes.position;
-    sparkData.forEach((s,i)=>{s.a+=s.spd;sp.array[i*3]=Math.sin(s.phi)*Math.cos(s.a)*s.r;sp.array[i*3+2]=Math.sin(s.phi)*Math.sin(s.a)*s.r;sp.array[i*3+1]=s.by+Math.sin(now*2+i)*.2});
-    sp.needsUpdate=true;
-  }
-
-  // Smoke particles
-  smokePs=smokePs.filter(p=>{
-    if(!p.userData||p.userData.life<=0){cakeScene.remove(p);return false}
-    p.userData.life-=.012;p.material.opacity=p.userData.life*.45;
-    p.position.x+=p.userData.vel.x;p.position.y+=p.userData.vel.y;p.position.z+=p.userData.vel.z;
-    p.scale.setScalar(1+(1-p.userData.life)*.8);return true;
-  });
-
-  cakeRend&&cakeRend.render(cakeScene,cakeCam);
-}
-
-function blowCandles(){
-  if(cakeBlown)return;cakeBlown=true;
-  // Blow each flame with delay
-  flames3.forEach((f,i)=>{
-    setTimeout(()=>{
-      f.group.visible=false;
-      // Spawn smoke
-      const p=f.base;
-      for(let k=0;k<14;k++){
-        const sm=new THREE.Mesh(new THREE.SphereGeometry(.06+Math.random()*.07,6,6),new THREE.MeshBasicMaterial({color:0x999999,transparent:true,opacity:.4}));
-        sm.position.set(p.x+(Math.random()-.5)*.1,p.y,(Math.random()-.5)*.1+p.z);
-        sm.userData={vel:{x:(Math.random()-.5)*.025,y:.045+Math.random()*.03,z:(Math.random()-.5)*.025},life:1};
-        cakeScene.add(sm);smokePs.push(sm);
-      }
-    },i*220);
-  });
-  // Update hint
-  setTimeout(()=>{
-    const h=document.getElementById("ckHint");
-    h.textContent="🎉 Your wish is granted, Darling Kutti! 🎉";
-    h.classList.add("won");
-  },700);
-  // Burst hearts + fireworks
-  for(let i=0;i<28;i++)setTimeout(spawnH,i*90);
-  setTimeout(launchFW,1000);
-}
-
-// Init cake when fonts are loaded
-document.fonts.load('80px "Great Vibes"').then(initCake).catch(initCake);
-
-// ═══════════════════════════════════════════════════════════
-//  AUTO-PLAY CINEMATIC EXPERIENCE
-// ═══════════════════════════════════════════════════════════
-function startExperience() {
-  // Hide start overlay
-  document.getElementById("startOvr").classList.add("hide");
-
-  // Show section dots
-  const bar = document.getElementById("autoBar");
-  bar.classList.add("show");
-
-  // Auto-play song (user gesture already satisfied by button click)
-  setTimeout(() => playSong(document.getElementById("songBtn")), 800);
-
-  // Section scroll timings (ms to spend on each section before moving on)
-  const sections = [...document.querySelectorAll(".sec")];
-  const timings  = [5000, 5000, 7000, 4500, 5000, 6000];
-  const dots     = [...document.querySelectorAll(".ab-dot")];
-
-  let idx = 0;
-  function goNext() {
-    if (idx >= sections.length) {
-      launchFW();
-      setTimeout(launchFW, 3500);
-      return;
-    }
-
-    // Highlight dot
-    dots.forEach((d, i) => d.classList.toggle("act", i === idx));
-
-    // Smooth scroll
-    sections[idx].scrollIntoView({ behavior: "smooth", block: "center" });
-
-    // Auto-blow candles when cake section is reached
-    const isCake = sections[idx].contains(document.getElementById("cakeCanvas"));
-    if (isCake) setTimeout(blowCandles, 2800);
-
-    // Fireworks at final section
-    const isFinal = idx === sections.length - 1;
-    if (isFinal) {
-      setTimeout(launchFW, 1500);
-      setTimeout(launchFW, 5000);
-    }
-
-    const wait = timings[idx] || 5000;
-    idx++;
-    setTimeout(goNext, wait);
-  }
-
-  setTimeout(goNext, 600);
-
-  // Continuous ambient firework sparkles after midpoint
-  setTimeout(function sparkLoop() {
-    if (idx > 2) launchFW();
-    setTimeout(sparkLoop, 18000);
-  }, 22000);
-}
-
-// ═══════════════════════════════════════════════════════════
-//  WEB AUDIO — HAPPY BIRTHDAY MELODY
-// ═══════════════════════════════════════════════════════════
-let audioCtx=null;
-const HB=[
-  // Hap-py birth-day to you
-  [261.6,.55],[261.6,.32],[293.7,.77],[261.6,.77],[349.2,.77],[329.6,1.45],[0,.28],
-  [261.6,.55],[261.6,.32],[293.7,.77],[261.6,.77],[392.0,.77],[349.2,1.45],[0,.28],
-  // Hap-py birth-day dear Thar-sa
-  [261.6,.55],[261.6,.32],[523.3,.77],[440.0,.77],[349.2,.7],[329.6,.55],[293.7,1.3],[0,.28],
-  // Hap-py birth-day to you
-  [466.2,.55],[466.2,.32],[440.0,.77],[349.2,.77],[392.0,.77],[349.2,1.95],
-];
-
-function playSong(btn){
-  const AC=window.AudioContext||window.webkitAudioContext;
-  if(!AC)return;
-  if(!audioCtx)audioCtx=new AC();
-  if(audioCtx.state==="suspended")audioCtx.resume();
-
-  btn.classList.toggle("playing");
-  if(!btn.classList.contains("playing"))return;
-
-  // Float music notes from button
-  [0,300,600,900].forEach(d=>setTimeout(()=>spawnNote(btn),d));
-
-  let t=audioCtx.currentTime+.1;
-  HB.forEach(([f,dur])=>{
-    if(f===0){t+=dur;return}
-    // Triangle oscillator (main)
-    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-    o.connect(g);g.connect(audioCtx.destination);
-    o.type="triangle";o.frequency.value=f;
-    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.26,t+.04);
-    g.gain.setValueAtTime(.26,t+dur*.78);g.gain.linearRampToValueAtTime(0,t+dur);
-    o.start(t);o.stop(t+dur+.05);
-    // Octave sine (shimmer)
-    const o2=audioCtx.createOscillator(),g2=audioCtx.createGain();
-    o2.connect(g2);g2.connect(audioCtx.destination);
-    o2.type="sine";o2.frequency.value=f*2;
-    g2.gain.setValueAtTime(0,t);g2.gain.linearRampToValueAtTime(.07,t+.04);
-    g2.gain.linearRampToValueAtTime(0,t+dur);
-    o2.start(t);o2.stop(t+dur+.05);
-    t+=dur*.98;
-  });
-  // Auto-stop playing state
-  setTimeout(()=>btn.classList.remove("playing"),(t-audioCtx.currentTime+.5)*1000);
-}
-
-function spawnNote(btn){
-  const n=document.createElement("span");n.className="note";
-  n.textContent=["♪","♫","♩","♬"][Math.floor(Math.random()*4)];
-  n.style.color="var(--gold)";n.style.setProperty("--nx",(Math.random()-.5)*80+"px");
-  btn.appendChild(n);setTimeout(()=>n.remove(),1600);
-}
-
-// ═══════════════════════════════════════════════════════════
-//  SPEECH SYNTHESIS
-// ═══════════════════════════════════════════════════════════
-function speakMsg(btn){
-  if(!window.speechSynthesis)return;
-  btn.classList.add("playing");
-  function doSpeak(){
-    const u=new SpeechSynthesisUtterance(VOICE_MSG);
-    u.rate=.82;u.pitch=1.1;u.volume=1;
-    const vs=speechSynthesis.getVoices();
-    const preferred=vs.find(v=>v.name.includes("Samantha")||v.name.includes("Victoria")||v.name.includes("Karen")||v.name.includes("Google UK English Female"))||(vs.find(v=>v.lang==="en-US"))||vs[0];
-    if(preferred)u.voice=preferred;
-    u.onend=()=>btn.classList.remove("playing");
-    speechSynthesis.cancel();speechSynthesis.speak(u);
-  }
-  if(speechSynthesis.getVoices().length){doSpeak()}
-  else{speechSynthesis.addEventListener("voiceschanged",doSpeak,{once:true})}
-}
-
-// ═══════════════════════════════════════════════════════════
-//  FIREWORKS (Canvas 2D)
-// ═══════════════════════════════════════════════════════════
-const fwc=document.getElementById("fwc");
-const fwx=fwc.getContext("2d");
+// ══════════════════════════════════════════════
+//  FIREWORKS
+// ══════════════════════════════════════════════
+const fwc=document.getElementById('fwc'),fwx=fwc.getContext('2d');
 fwc.width=innerWidth;fwc.height=innerHeight;
-window.addEventListener("resize",()=>{fwc.width=innerWidth;fwc.height=innerHeight});
-
+window.addEventListener('resize',()=>{fwc.width=innerWidth;fwc.height=innerHeight});
 let fwParts=[],fwOn=false;
-function mkPart(x,y,r,g,b){const a=Math.random()*Math.PI*2,s=Math.random()*7+2;return{x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r,g,b,life:1,dec:Math.random()*.02+.008,rad:Math.random()*3.5+1,trail:[]}}
-
+function mkFP(x,y,r,g,b){const a=Math.random()*Math.PI*2,s=Math.random()*7+2;return{x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,r,g,b,life:1,dec:Math.random()*.02+.008,rad:Math.random()*3+1,trail:[]}}
 function launchFW(){
-  fwc.style.display="block";fwOn=true;
-  const COLS=[[255,107,138],[212,175,55],[192,132,252],[255,255,255],[255,180,200],[100,200,255]];
+  fwc.style.display='block';fwOn=true;
+  const COLS=[[255,107,138],[212,175,55],[192,132,252],[255,255,255],[255,180,200],[120,200,255]];
   let n=0;const iv=setInterval(()=>{
     const x=Math.random()*innerWidth,y=Math.random()*innerHeight*.6;
     const [r,g,b]=COLS[Math.floor(Math.random()*COLS.length)];
-    for(let i=0;i<90;i++)fwParts.push(mkPart(x,y,r,g,b));
-    if(++n>=16){clearInterval(iv);fwOn=false}
-  },360);
-  tickFW();
+    for(let i=0;i<80;i++)fwParts.push(mkFP(x,y,r,g,b));
+    if(++n>=10){clearInterval(iv);fwOn=false}
+  },380);
+  fwTick();
 }
-function tickFW(){
-  fwx.fillStyle="rgba(3,0,14,.14)";fwx.fillRect(0,0,fwc.width,fwc.height);
+function fwTick(){
+  fwx.fillStyle='rgba(3,0,14,.14)';fwx.fillRect(0,0,fwc.width,fwc.height);
   fwParts=fwParts.filter(p=>p.life>0);
   fwParts.forEach(p=>{
-    p.trail.push({x:p.x,y:p.y});if(p.trail.length>7)p.trail.shift();
+    p.trail.push({x:p.x,y:p.y});if(p.trail.length>6)p.trail.shift();
     p.x+=p.vx;p.y+=p.vy+.18;p.vx*=.972;p.vy*=.972;p.life-=p.dec;
     p.trail.forEach((pt,i)=>{const f=i/p.trail.length;fwx.beginPath();fwx.arc(pt.x,pt.y,p.rad*f*p.life,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${f*p.life*.35})`;fwx.fill()});
     fwx.beginPath();fwx.arc(p.x,p.y,p.rad*p.life,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life})`;fwx.fill();
     fwx.beginPath();fwx.arc(p.x,p.y,p.rad*p.life*2.5,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life*.18})`;fwx.fill();
   });
-  if(fwParts.length>0||fwOn){requestAnimationFrame(tickFW)}
-  else{setTimeout(()=>{fwc.style.display="none";fwx.clearRect(0,0,fwc.width,fwc.height)},2000)}
+  if(fwParts.length>0||fwOn)requestAnimationFrame(fwTick);
+  else setTimeout(()=>{fwc.style.display='none';fwx.clearRect(0,0,fwc.width,fwc.height)},2000);
+}
+
+// ══════════════════════════════════════════════
+//  3D CAKE (Three.js)
+// ══════════════════════════════════════════════
+let cRend,cScene,cCam,cGroup,flames=[],cLights=[],smokes=[],blown=false,cT=0;
+
+function cakeW(){return Math.min(300,innerWidth-32)}
+
+function initCake(){
+  const cv=document.getElementById('cakeCanvas');
+  const w=cakeW(),h=Math.round(w*.88);
+  cv.width=w;cv.height=h;cv.style.width=w+'px';cv.style.height=h+'px';
+
+  cRend=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});
+  cRend.setPixelRatio(Math.min(devicePixelRatio,2));
+  cRend.setSize(w,h);
+
+  cScene=new THREE.Scene();
+  cCam=new THREE.PerspectiveCamera(44,w/h,.1,100);
+  cCam.position.set(0,4.8,9.5);cCam.lookAt(0,1.6,0);
+
+  cScene.add(new THREE.AmbientLight(0x1a0010,2.4));
+  const kl=new THREE.DirectionalLight(0xffd0e8,.75);kl.position.set(3,8,5);cScene.add(kl);
+
+  const CP=[{x:-.6,z:.35},{x:.6,z:.35},{x:0,z:-.5}];
+  CP.forEach(p=>{const l=new THREE.PointLight(0xff8c00,1.8,8);l.position.set(p.x,3.6,p.z);cScene.add(l);cLights.push(l)});
+
+  // Materials
+  const F =new THREE.MeshPhongMaterial({color:0xffe8f5,shininess:90,specular:0xffccee});
+  const T1=new THREE.MeshPhongMaterial({color:0x3d0a22,shininess:20,specular:0x150510});
+  const T2=new THREE.MeshPhongMaterial({color:0x4a0d28,shininess:18,specular:0x1a0810});
+  const T3=new THREE.MeshPhongMaterial({color:0x3a0820,shininess:20,specular:0x120408});
+  const PL=new THREE.MeshPhongMaterial({color:0xd4af37,shininess:220,specular:0xffd700,emissive:0x2a1a00});
+  const PE=new THREE.MeshPhongMaterial({color:0xfff0f8,shininess:180,specular:0xffffff});
+  const LBL=mkLblTex();
+  const T1s=new THREE.MeshPhongMaterial({color:0x3d0a22,shininess:20,specular:0x150510,map:LBL});
+
+  cGroup=new THREE.Group();
+
+  // Plate
+  const pl=new THREE.Mesh(new THREE.CylinderGeometry(3.6,3.4,.12,48),PL);pl.position.y=-1.86;cGroup.add(pl);
+  cGroup.add(Object.assign(new THREE.Mesh(new THREE.TorusGeometry(3.5,.09,10,48),PL),{rotation:{x:Math.PI/2},position:{y:-1.8,x:0,z:0}}));
+
+  // Tiers
+  const t1=new THREE.Mesh(new THREE.CylinderGeometry(3,3,1.5,48),[T1s,T1,T1]);t1.position.y=-1.05;cGroup.add(t1);
+  addFrost(cGroup,-.225,3.05,.15,48,F);addDrips(cGroup,-.3,3.05,18,F);addPearls(cGroup,-1.72,2.98,24,PE);
+
+  const t2=new THREE.Mesh(new THREE.CylinderGeometry(2,2,1.3,48),T2);t2.position.y=.5;cGroup.add(t2);
+  addFrost(cGroup,1.225,2.05,.15,48,F);addDrips(cGroup,1.15,2.05,12,F);addPearls(cGroup,-.22,1.98,18,PE);
+  // deco balls
+  for(let i=0;i<8;i++){const a=(i/8)*Math.PI*2;const db=new THREE.Mesh(new THREE.SphereGeometry(.1,10,10),PE);db.position.set(Math.cos(a)*1.6,.7,Math.sin(a)*1.6);cGroup.add(db)}
+
+  const t3=new THREE.Mesh(new THREE.CylinderGeometry(1.3,1.3,1,48),T3);t3.position.y=1.8;cGroup.add(t3);
+  addFrost(cGroup,2.375,1.35,.15,48,F);addDrips(cGroup,2.3,1.35,8,F);addPearls(cGroup,1.3,1.28,12,PE);
+  // sprinkles
+  const SM=[new THREE.MeshPhongMaterial({color:0xff6b8a}),new THREE.MeshPhongMaterial({color:0xd4af37}),new THREE.MeshPhongMaterial({color:0xc084fc})];
+  for(let i=0;i<26;i++){const a=Math.random()*Math.PI*2,r=.5+Math.random()*.65;const sp=new THREE.Mesh(new THREE.CylinderGeometry(.025,.025,.2,5),SM[i%3]);sp.position.set(Math.cos(a)*r,1.8+.5+Math.random()*.35-.18,Math.sin(a)*r);sp.rotation.z=Math.random()*Math.PI;sp.rotation.x=Math.random()*Math.PI;cGroup.add(sp)}
+
+  // Heart topper
+  const ht=mkHeart(0xff6b8a);ht.position.set(-.27,2.52,.1);ht.rotation.z=-.05;cGroup.add(ht);
+
+  // Candles
+  const CM=[new THREE.MeshPhongMaterial({color:0xff6b8a,shininess:60}),new THREE.MeshPhongMaterial({color:0xc084fc,shininess:60}),new THREE.MeshPhongMaterial({color:0xd4af37,shininess:200,specular:0xffd700,emissive:0x1a0d00})];
+  CP.forEach((p,i)=>{
+    const cb=new THREE.Mesh(new THREE.CylinderGeometry(.1,.1,.75,12),CM[i]);cb.position.set(p.x,2.825,p.z);cGroup.add(cb);
+    const wk=new THREE.Mesh(new THREE.CylinderGeometry(.012,.012,.18,6),new THREE.MeshPhongMaterial({color:0x111111}));wk.position.set(p.x,3.29,p.z);cGroup.add(wk);
+    const fg=mkFlame();fg.position.set(p.x,3.45,p.z);cGroup.add(fg);
+    flames.push({g:fg,base:{x:p.x,y:3.45,z:p.z}});
+  });
+
+  cScene.add(cGroup);
+  cGroup.rotation.y=Math.PI*.25;
+
+  // ── Auto-blow at 7s ──
+  setTimeout(doBlow,7000);
+
+  window.addEventListener('resize',()=>{
+    const nw=cakeW(),nh=Math.round(nw*.88);
+    cv.width=nw;cv.height=nh;cv.style.width=nw+'px';cv.style.height=nh+'px';
+    cRend.setSize(nw,nh);cCam.aspect=nw/nh;cCam.updateProjectionMatrix();
+  });
+
+  tickCake();
+}
+
+function mkLblTex(){
+  const c=document.createElement('canvas');c.width=1024;c.height=300;
+  const ctx=c.getContext('2d');ctx.clearRect(0,0,1024,300);
+  ctx.strokeStyle='rgba(255,180,210,.4)';ctx.lineWidth=2;ctx.strokeRect(24,18,976,264);
+  ctx.textAlign='center';
+  ctx.font='76px "Great Vibes",cursive';ctx.fillStyle='rgba(255,220,240,.9)';ctx.fillText('Happy Birthday',512,132);
+  ctx.font='96px "Great Vibes",cursive';ctx.fillStyle='rgba(255,150,180,1)';ctx.fillText('Tharsa',512,248);
+  return new THREE.CanvasTexture(c);
+}
+function addFrost(p,y,r,h,seg,mat){const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,seg),mat);m.position.y=y;p.add(m)}
+function addDrips(parent,y,r,n,mat){
+  for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2,h=.08+Math.random()*.1;
+    const d=new THREE.Mesh(new THREE.CylinderGeometry(.055,.03,h,5),mat);d.position.set(Math.cos(a)*r,y-h/2,Math.sin(a)*r);parent.add(d);
+    const dp=new THREE.Mesh(new THREE.SphereGeometry(.052,6,6),mat);dp.position.set(Math.cos(a)*r,y-h-.03,Math.sin(a)*r);parent.add(dp);
+  }
+}
+function addPearls(parent,y,r,n,mat){for(let i=0;i<n;i++){const a=(i/n)*Math.PI*2;const p=new THREE.Mesh(new THREE.SphereGeometry(.07,8,8),mat);p.position.set(Math.cos(a)*r,y,Math.sin(a)*r);parent.add(p)}}
+function mkFlame(){
+  const g=new THREE.Group();
+  [[.13,.4,0xff7400,.95],[.08,.3,0xffc200,.97],[.04,.15,0xffffff,.9]].forEach(([rx,h,c,op])=>{
+    const m=new THREE.Mesh(new THREE.ConeGeometry(rx,h,8),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:op}));
+    m.position.y=h/2;g.add(m);
+  });
+  return g;
+}
+function mkHeart(color){
+  const s=new THREE.Shape(),sc=.32;
+  s.moveTo(sc*.25,sc*.25);s.bezierCurveTo(sc*.25,sc*.25,sc*.2,0,0,0);s.bezierCurveTo(-sc*.3,0,-sc*.3,sc*.35,-sc*.3,sc*.35);s.bezierCurveTo(-sc*.3,sc*.55,-sc*.1,sc*.77,sc*.25,sc*.95);s.bezierCurveTo(sc*.6,sc*.77,sc*.8,sc*.55,sc*.8,sc*.35);s.bezierCurveTo(sc*.8,sc*.35,sc*.8,0,sc*.5,0);s.bezierCurveTo(sc*.35,0,sc*.25,sc*.25,sc*.25,sc*.25);
+  return new THREE.Mesh(new THREE.ShapeGeometry(s),new THREE.MeshPhongMaterial({color,side:THREE.DoubleSide,shininess:80,emissive:0x3a0010}));
+}
+
+function tickCake(){
+  requestAnimationFrame(tickCake);
+  cT+=.016;const t=cT;
+  if(cGroup)cGroup.rotation.y+=.005;
+  flames.forEach((f,i)=>{
+    if(blown)return;
+    f.g.scale.x=1+Math.sin(t*13+i*2.3)*.14;f.g.scale.z=1+Math.cos(t*10+i*1.8)*.14;f.g.scale.y=1+Math.sin(t*8+i*3.1)*.07;
+    f.g.position.x=f.base.x+Math.sin(t*11+i)*.025;
+  });
+  cLights.forEach((l,i)=>{if(blown){l.intensity*=.94;return}l.intensity=1.5+Math.sin(t*18+i*2.1)*.38+Math.sin(t*8+i)*.2});
+  smokes=smokes.filter(p=>{if(p.userData.life<=0){cScene.remove(p);return false}p.userData.life-=.013;p.material.opacity=p.userData.life*.4;p.position.x+=p.userData.vel.x;p.position.y+=p.userData.vel.y;p.position.z+=p.userData.vel.z;p.scale.setScalar(1+(1-p.userData.life)*.7);return true});
+  cRend&&cRend.render(cScene,cCam);
+}
+
+function doBlow(){
+  if(blown)return;blown=true;
+  flames.forEach((f,i)=>setTimeout(()=>{
+    f.g.visible=false;
+    for(let k=0;k<12;k++){
+      const sm=new THREE.Mesh(new THREE.SphereGeometry(.06+Math.random()*.07,5,5),new THREE.MeshBasicMaterial({color:0xaaaaaa,transparent:true,opacity:.4}));
+      sm.position.set(f.base.x+(Math.random()-.5)*.1,f.base.y,(Math.random()-.5)*.1+f.base.z);
+      sm.userData={vel:{x:(Math.random()-.5)*.025,y:.045+Math.random()*.03,z:(Math.random()-.5)*.025},life:1};
+      cScene.add(sm);smokes.push(sm);
+    }
+  },i*220));
+  setTimeout(()=>{
+    const l=document.getElementById('ckLbl');
+    l.textContent='🎉 Happy Birthday Tharsa! 🎉';l.classList.add('won');
+  },700);
+  setTimeout(()=>{
+    confettiBurst(innerWidth/2,innerHeight*.6,150);
+    for(let i=0;i<20;i++)spawnH();
+    launchFW();
+  },900);
+  // repeat fireworks
+  setTimeout(launchFW,5500);
+  setTimeout(launchFW,11000);
+}
+
+document.fonts.load('80px "Great Vibes"').then(initCake).catch(initCake);
+
+// ══════════════════════════════════════════════
+//  MUSIC  (♪ button — mobile needs tap for audio)
+// ══════════════════════════════════════════════
+let aCtx=null,playing=false;
+const HB=[[261.6,.55],[261.6,.32],[293.7,.77],[261.6,.77],[349.2,.77],[329.6,1.45],[0,.28],[261.6,.55],[261.6,.32],[293.7,.77],[261.6,.77],[392.0,.77],[349.2,1.45],[0,.28],[261.6,.55],[261.6,.32],[523.3,.77],[440.0,.77],[349.2,.7],[329.6,.55],[293.7,1.3],[0,.28],[466.2,.55],[466.2,.32],[440.0,.77],[349.2,.77],[392.0,.77],[349.2,1.95]];
+
+function toggleMusic(btn){
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;
+  if(!aCtx)aCtx=new AC();if(aCtx.state==='suspended')aCtx.resume();
+  playing=!playing;btn.textContent=playing?'⏸':'♪';btn.classList.toggle('on',playing);
+  if(!playing)return;
+  let t=aCtx.currentTime+.1;
+  HB.forEach(([f,d])=>{
+    if(f===0){t+=d;return}
+    const o=aCtx.createOscillator(),g=aCtx.createGain();o.connect(g);g.connect(aCtx.destination);
+    o.type='triangle';o.frequency.value=f;
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.25,t+.04);g.gain.setValueAtTime(.25,t+d*.78);g.gain.linearRampToValueAtTime(0,t+d);
+    o.start(t);o.stop(t+d+.05);
+    const o2=aCtx.createOscillator(),g2=aCtx.createGain();o2.connect(g2);g2.connect(aCtx.destination);
+    o2.type='sine';o2.frequency.value=f*2;g2.gain.setValueAtTime(0,t);g2.gain.linearRampToValueAtTime(.07,t+.04);g2.gain.linearRampToValueAtTime(0,t+d);
+    o2.start(t);o2.stop(t+d+.05);
+    t+=d*.98;
+  });
+  const tot=HB.reduce((s,[,d])=>s+d,0)*980;
+  setTimeout(()=>{playing=false;btn.textContent='♪';btn.classList.remove('on')},tot);
 }
 </script>
 </body>
