@@ -370,7 +370,7 @@ function launchFW(){
 function fwTick(){
   fwx.fillStyle='rgba(3,0,14,.13)';fwx.fillRect(0,0,fwc.width,fwc.height);
   fwP=fwP.filter(p=>p.life>0);
-  fwP.forEach(p=>{p.trail.push({x:p.x,y:p.y});if(p.trail.length>6)p.trail.shift();p.x+=p.vx;p.y+=p.vy+.18;p.vx*=.972;p.vy*=.972;p.life-=p.dec;p.trail.forEach((pt,i)=>{const f=i/p.trail.length;fwx.beginPath();fwx.arc(pt.x,pt.y,p.rad*f*p.life,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${f*p.life*.3})`;fwx.fill()});fwx.beginPath();fwx.arc(p.x,p.y,p.rad*p.life,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life})`;fwx.fill()});
+  fwP.forEach(p=>{p.trail.push({x:p.x,y:p.y});if(p.trail.length>6)p.trail.shift();p.x+=p.vx;p.y+=p.vy+.18;p.vx*=.972;p.vy*=.972;p.life-=p.dec;p.trail.forEach((pt,i)=>{const f=i/p.trail.length;const tr=Math.max(0,p.rad*f*p.life);if(!tr)return;fwx.beginPath();fwx.arc(pt.x,pt.y,tr,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${f*p.life*.3})`;fwx.fill()});const mr=Math.max(0,p.rad*p.life);if(!mr)return;fwx.beginPath();fwx.arc(p.x,p.y,mr,0,Math.PI*2);fwx.fillStyle=`rgba(${p.r},${p.g},${p.b},${p.life})`;fwx.fill()});
   if(fwP.length>0||fwOn)requestAnimationFrame(fwTick);
   else setTimeout(()=>{fwc.style.display='none';fwx.clearRect(0,0,fwc.width,fwc.height)},2000);
 }
